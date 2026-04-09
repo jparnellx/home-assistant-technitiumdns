@@ -392,11 +392,13 @@ class TechnitiumDHCPDeviceDiagnosticSensor(CoordinatorEntity, SensorEntity):
 
         # Try to get hostname from device data for better model detection
         device_data = self._get_device_data()
-        hostname = "unknown"
+        hostname = ""
         if device_data:
-            hostname = device_data.get("hostname", "")
+        # .get() returns None if missing; 'or' replaces None/empty string with "unknown"
+            hostname = device_data.get("hostname") or "unknown"
+        else:
+            hostname = "unknown"
         _LOGGER.debug("Hostname: %s", hostname)
-
         
         # Determine a reasonable model name
         if "raspberry" in hostname.lower() or "rpi" in hostname.lower():
