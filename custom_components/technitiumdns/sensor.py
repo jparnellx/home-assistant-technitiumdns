@@ -995,7 +995,7 @@ class DynamicSensorManager:
                 _LOGGER.info("Dynamic sensor manager: Successfully added %d sensors for %d new devices",
                            len(new_sensors), len(devices))
             else:
-                _LOGGER.warning("Dynamic sensor manager: No sensors created for %d devices", len(devices))
+                _LOGGER.info("Dynamic sensor manager: No sensors created for %d devices", len(devices))
 
         except Exception as e:
             _LOGGER.error("Dynamic sensor manager: Error creating sensors for new devices: %s", e, exc_info=True)
